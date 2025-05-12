@@ -1,13 +1,13 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import (
+    Table, Column, Integer, String, Boolean
+)
+from db import metadata
 
-Base = declarative_base()
-
-
-class Student(Base):
-    __tablename__ = "students"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    email = Column(String, nullable=False, unique=True)
-    is_deleted = Column(Boolean, default=False)
+students = Table(
+    "students",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String, nullable=False),
+    Column("email", String, nullable=False, unique=True),
+    Column("is_deleted", Boolean, default=False)
+)
